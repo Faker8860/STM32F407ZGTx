@@ -1,0 +1,9 @@
+../FreeModbus/port/portserial.c:57:6:vMBPortSerialEnable	4
+../FreeModbus/port/portserial.c:135:6:xMBPortSerialInit	1
+../FreeModbus/port/portserial.c:166:6:xMBPortSerialPutByte	1
+../FreeModbus/port/portserial.c:186:6:xMBPortSerialGetByte	1
+../FreeModbus/port/portserial.c:200:6:serialReceiveOneByteISR	1
+../FreeModbus/port/portserial.c:209:6:serialSentOneByteISR	1
+../FreeModbus/port/portserial.c:218:6:serialTxCompleteISR	1
+../FreeModbus/port/portserial.c:237:6:EnterCriticalSection	1
+../FreeModbus/port/portserial.c:246:6:ExitCriticalSection	1

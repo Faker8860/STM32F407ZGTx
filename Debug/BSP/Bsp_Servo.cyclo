@@ -1,0 +1,2 @@
+../BSP/Bsp_Servo.c:11:6:Bsp_ServoInit	1
+../BSP/Bsp_Servo.c:16:6:Bsp_ServoSetAngle	2

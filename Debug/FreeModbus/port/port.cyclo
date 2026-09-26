@@ -1,0 +1,4 @@
+../FreeModbus/port/port.c:84:14:eMBRegInputCB	7
+../FreeModbus/port/port.c:131:14:eMBRegHoldingCB	12
+../FreeModbus/port/port.c:209:14:eMBRegCoilsCB	15
+../FreeModbus/port/port.c:358:14:eMBRegDiscreteCB	10

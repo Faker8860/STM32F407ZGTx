@@ -1,0 +1,2 @@
+../BSP/Src/Bsp_LightSensor.c:17:18:Bsp_LightSensor_GetState	2
+../BSP/Src/Bsp_LightSensor.c:34:9:Bsp_LightSensor_IsTriggered	1
