@@ -70,7 +70,7 @@ void MX_USART2_UART_Init(void)
   /* USER CODE END USART2_Init 1 */
   huart2.Instance = USART2;
   huart2.Init.BaudRate = 115200;
-  huart2.Init.WordLength = UART_WORDLENGTH_8B;
+  huart2.Init.WordLength = UART_WORDLENGTH_9B;
   huart2.Init.StopBits = UART_STOPBITS_1;
   huart2.Init.Parity = UART_PARITY_EVEN;
   huart2.Init.Mode = UART_MODE_TX_RX;
@@ -201,6 +201,15 @@ void User_UART2_Init(uint32_t baud)
     HAL_UART_Abort(&huart2);
 
     huart2.Init.BaudRate = baud;
+
+    /*
+     * 8-E-1 必须用 9 位字长：STM32F4 使能校验位时，校验位会
+     * 占掉数据的最高位。用 8 位字长实际会变成 7-E-1，和主机
+     * (8-E-1) 位宽不一致，导致每一字节 framing error。
+     * 这里强制覆盖，防止 CubeMX 重新生成时把 MX_USART2_UART_Init
+     * 里的值改回 8B。
+     */
+    huart2.Init.WordLength = UART_WORDLENGTH_9B;
 
     HAL_UART_DeInit(&huart2);
     HAL_UART_Init(&huart2);

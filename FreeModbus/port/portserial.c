@@ -42,8 +42,8 @@ extern UART_HandleTypeDef huart2;
  *   1. 启动时单纯开启接收（此时并没有在发送）
  *   2. 一帧响应发完后，要把 DE 切回接收
  *
- * 这两种场景处理方式不同：场景2必须等 TC 中断（最后一字节真正
- * 发完）才能切 DE，否则会削掉停止位；场景1则应直接开接收。
+ * 这两种场景处理方式不同：场景2必须等 TC 标志置位（轮询，最后一
+ * 字节真正发完）才能切 DE，否则会削掉停止位；场景1则应直接开接收。
  * 用这个标志区分两者。
  */
 static volatile BOOL bRs485TxActive = FALSE;
@@ -89,16 +89,30 @@ void vMBPortSerialEnable(BOOL xRxEnable, BOOL xTxEnable)
         {
             if (bRs485TxActive)
             {
-                /*
-                 * 刚发完一帧：不能立刻把RS485切回接收，
-                 * 最后一字节还在移位寄存器里发送，立刻切方向
-                 * 会削掉停止位，主机收到 framing error。
-                 *
-                 * 这里只开TC中断，等最后一字节真正发完，
-                 * 由serialTxCompleteISR切回接收。
-                 */
+                volatile uint32_t timeout;
+
                 bRs485TxActive = FALSE;
-                __HAL_UART_ENABLE_IT(&huart2, UART_IT_TC);
+
+                /*
+                 * 刚发完一帧：最后一字节还在移位寄存器里发送，
+                 * 立刻切回接收会削掉停止位，主机收到 framing error。
+                 *
+                 * 轮询 TC 标志，等最后一字节真正发完再切回接收。
+                 * 用轮询而不是 TC 中断，避免额外引入一个中断源
+                 * （TC中断曾导致 USART2 中断风暴、程序卡死）。
+                 *
+                 * 等待时间约 1 个字节（最慢 9600 约 1.15ms），
+                 * 带超时保护，防止意外死循环。
+                 */
+                timeout = 1000000UL;
+                while (((huart2.Instance->SR & USART_SR_TC) == 0UL) &&
+                       (timeout != 0UL))
+                {
+                    timeout--;
+                }
+
+                Bsp_RS485_SetReceive();
+                __HAL_UART_ENABLE_IT(&huart2, UART_IT_RXNE);
             }
             else
             {
@@ -209,25 +223,6 @@ void serialReceiveOneByteISR(void)
 void serialSentOneByteISR(void)
 {
     pxMBFrameCBTransmitterEmpty();
-}
-
-
-/**
- * @brief  USART2发送完成（TC中断，最后一字节已全部移出）
- */
-void serialTxCompleteISR(void)
-{
-    /* 清TC标志 */
-    __HAL_UART_CLEAR_FLAG(&huart2, UART_FLAG_TC);
-
-    /* 关闭TC中断 */
-    __HAL_UART_DISABLE_IT(&huart2, UART_IT_TC);
-
-    /* RS485切回接收 */
-    Bsp_RS485_SetReceive();
-
-    /* 开启接收中断 */
-    __HAL_UART_ENABLE_IT(&huart2, UART_IT_RXNE);
 }
 
 

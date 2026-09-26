@@ -72,7 +72,6 @@ void            ExitCriticalSection( void );
 
 void            serialReceiveOneByteISR( void );
 void            serialSentOneByteISR( void );
-void            serialTxCompleteISR( void );
 
 #endif
 
