@@ -76,7 +76,6 @@ extern InputREG   *const INPUTREG;
 
 /* Exported macro ------------------------------------------------------------*/
 /* USER CODE BEGIN EM */
-void I2C1_Scan(void);
 /* USER CODE END EM */
 
 /* Exported functions prototypes ---------------------------------------------*/

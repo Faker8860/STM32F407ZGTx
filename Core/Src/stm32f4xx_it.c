@@ -204,6 +204,40 @@ void SysTick_Handler(void)
 /**
   * @brief This function handles USART2 global interrupt.
   */
+void USART2_IRQHandler(void)
+{
+  /* USER CODE BEGIN USART2_IRQn 0 */
+	uint32_t isr = huart2.Instance->SR;
+	uint32_t cr1 = huart2.Instance->CR1;
+
+	/* 接收 */
+	if ((isr & USART_SR_RXNE) &&
+		(cr1 & USART_CR1_RXNEIE))
+	{
+		serialReceiveOneByteISR();
+	}
+
+	/* 发送 */
+	if ((isr & USART_SR_TXE) &&
+		(cr1 & USART_CR1_TXEIE))
+	{
+		serialSentOneByteISR();
+	}
+
+	/* UART错误 */
+	if (isr & (USART_SR_ORE |
+			   USART_SR_FE  |
+			   USART_SR_NE  |
+			   USART_SR_PE))
+	{
+		(void)huart2.Instance->DR;
+	}
+  /* USER CODE END USART2_IRQn 0 */
+
+  /* USER CODE BEGIN USART2_IRQn 1 */
+
+  /* USER CODE END USART2_IRQn 1 */
+}
 
 /**
   * @brief This function handles TIM7 global interrupt.
@@ -220,32 +254,5 @@ void TIM7_IRQHandler(void)
 }
 
 /* USER CODE BEGIN 1 */
-void USART2_IRQHandler(void)
-{
-    uint32_t isr = huart2.Instance->SR;
-    uint32_t cr1 = huart2.Instance->CR1;
 
-    /* 接收 */
-    if ((isr & USART_SR_RXNE) &&
-        (cr1 & USART_CR1_RXNEIE))
-    {
-        serialReceiveOneByteISR();
-    }
-
-    /* 发送 */
-    if ((isr & USART_SR_TXE) &&
-        (cr1 & USART_CR1_TXEIE))
-    {
-        serialSentOneByteISR();
-    }
-
-    /* UART错误 */
-    if (isr & (USART_SR_ORE |
-               USART_SR_FE  |
-               USART_SR_NE  |
-               USART_SR_PE))
-    {
-        (void)huart2.Instance->DR;
-    }
-}
 /* USER CODE END 1 */

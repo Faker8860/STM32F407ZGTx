@@ -38,8 +38,7 @@ FreeModbus/modbus/mb.o: ../FreeModbus/modbus/mb.c \
  D:/CompanyFiles/Code/Study_Code/STM32F407ZGTx/FreeModbus/modbus/include/mbproto.h \
  D:/CompanyFiles/Code/Study_Code/STM32F407ZGTx/FreeModbus/modbus/include/mbfunc.h \
  D:/CompanyFiles/Code/Study_Code/STM32F407ZGTx/FreeModbus/modbus/include/mbport.h \
- D:/CompanyFiles/Code/Study_Code/STM32F407ZGTx/FreeModbus/modbus/rtu/mbrtu.h \
- D:/CompanyFiles/Code/Study_Code/STM32F407ZGTx/FreeModbus/modbus/ascii/mbascii.h
+ D:/CompanyFiles/Code/Study_Code/STM32F407ZGTx/FreeModbus/modbus/rtu/mbrtu.h
 D:/CompanyFiles/Code/Study_Code/STM32F407ZGTx/FreeModbus/port/port.h:
 ../Core/Inc/main.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
@@ -81,4 +80,3 @@ D:/CompanyFiles/Code/Study_Code/STM32F407ZGTx/FreeModbus/modbus/include/mbproto.
 D:/CompanyFiles/Code/Study_Code/STM32F407ZGTx/FreeModbus/modbus/include/mbfunc.h:
 D:/CompanyFiles/Code/Study_Code/STM32F407ZGTx/FreeModbus/modbus/include/mbport.h:
 D:/CompanyFiles/Code/Study_Code/STM32F407ZGTx/FreeModbus/modbus/rtu/mbrtu.h:
-D:/CompanyFiles/Code/Study_Code/STM32F407ZGTx/FreeModbus/modbus/ascii/mbascii.h:

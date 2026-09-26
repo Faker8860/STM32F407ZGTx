@@ -1,4 +1,4 @@
-../FreeModbus/port/port.c:84:14:eMBRegInputCB	24	static
-../FreeModbus/port/port.c:131:14:eMBRegHoldingCB	32	static
-../FreeModbus/port/port.c:209:14:eMBRegCoilsCB	32	static
-../FreeModbus/port/port.c:358:14:eMBRegDiscreteCB	24	static
+../FreeModbus/port/port.c:78:14:eMBRegInputCB	24	static
+../FreeModbus/port/port.c:125:14:eMBRegHoldingCB	32	static
+../FreeModbus/port/port.c:203:14:eMBRegCoilsCB	32	static
+../FreeModbus/port/port.c:352:14:eMBRegDiscreteCB	24	static

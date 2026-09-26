@@ -21,12 +21,6 @@
 volatile uint8_t g_bBaudChangePending = 0U;
 /* ----------------------- Defines ------------------------------------------*/
 
-
-#define HOLDINGREG_COUNT 	(sizeof(HoldingREG) / sizeof(uint16_t))
-
-#define INPUTREG_COUNT  	(sizeof(InputREG) / sizeof(uint16_t))
-
-
 /*
  * 线圈
  *

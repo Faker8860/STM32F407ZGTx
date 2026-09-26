@@ -39,7 +39,7 @@ PR_BEGIN_EXTERN_C
  *  @{
  */
 /*! \brief 启用 Modbus ASCII 支持。 */
-#define MB_ASCII_ENABLED                        (  1 )
+#define MB_ASCII_ENABLED                        (  0 )
 
 /*! \brief 启用 Modbus RTU 支持。 */
 #define MB_RTU_ENABLED                          (  1 )
@@ -66,6 +66,15 @@ PR_BEGIN_EXTERN_C
  */
 #ifndef MB_ASCII_TIMEOUT_WAIT_BEFORE_SEND_MS
 #define MB_ASCII_TIMEOUT_WAIT_BEFORE_SEND_MS    ( 0 )
+#endif
+
+/*! \brief 在启用 RTU 之前等待启用串行发送的超时时间。
+ *
+ * 同 ASCII 超时，某些目标在接收和发送帧之间需要延迟。
+ * 0 表示不延迟。
+ */
+#ifndef MB_RTU_TIMEOUT_WAIT_BEFORE_SEND_MS
+#define MB_RTU_TIMEOUT_WAIT_BEFORE_SEND_MS    ( 0 )
 #endif
 
 /*! \brief 协议栈应支持的最大 Modbus 功能码数量。

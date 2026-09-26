@@ -68,7 +68,6 @@ void APP_Config_SetDefault(void);
 HAL_StatusTypeDef APP_Config_Load(void);
 HAL_StatusTypeDef APP_Config_Save(void);
 uint32_t APP_Config_GetBaudRate(void);
-uint8_t APP_Config_IsValid(void);
 void APP_Config_Init(void);
 
 #endif /* INC_APP_CONFIG_H_ */

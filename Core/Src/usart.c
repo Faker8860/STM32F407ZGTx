@@ -214,7 +214,6 @@ void User_UART2_Init(uint32_t baud)
     HAL_UART_DeInit(&huart2);
     HAL_UART_Init(&huart2);
 
-    __HAL_UART_CLEAR_FLAG(&huart2, UART_FLAG_RXNE);
     __HAL_UART_ENABLE_IT(&huart2, UART_IT_RXNE);
     __HAL_UART_DISABLE_IT(&huart2, UART_IT_TXE);
 }

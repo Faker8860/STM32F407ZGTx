@@ -35,7 +35,6 @@ extern uint16_t REG_HOLD_BUF[REG_HOLD_SIZE];
 extern uint16_t REG_INPUT_BUF[REG_INPUT_SIZE];
 
 /* ----------------------- Defines ------------------------------------------*/
-#define	INLINE inline //实际没有用到
 #define PR_BEGIN_EXTERN_C           extern "C" {
 #define	PR_END_EXTERN_C             }
 

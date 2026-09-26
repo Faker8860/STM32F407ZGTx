@@ -217,18 +217,6 @@ uint32_t APP_Config_GetBaudRate(void)
 }
 
 
-/* =========================================================
- * 判断配置是否有效
- * ========================================================= */
-
-/**
- * @brief 判断当前配置是否有效
- */
-uint8_t APP_Config_IsValid(void)
-{
-    return APP_Config_Check();
-}
-
 void APP_Config_Init(void)
 {
     /* EEPROM 初始化失败 */
