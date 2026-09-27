@@ -41,8 +41,7 @@ typedef struct
 {
     uint16_t SystemMode;       	//[0] 0xAA = APP,	0xFF = BOOT
 
-    /* 波特率选择 (初始化值: 0x05 = 115200) */
-    uint16_t BaudRate;			//[1]
+    uint16_t BaudRate;			//[1] 波特率选择 (初始化值: 0x05 = 115200)
 
 } HoldingREG;
 _Static_assert(sizeof(HoldingREG) == 2 * sizeof(uint16_t), "HoldingREG Size ERROR");

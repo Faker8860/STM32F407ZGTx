@@ -6639,8 +6639,9 @@ LOAD C:/ST/STM32CubeIDE_2.1.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.exte
  .text.HAL_I2C_MspInit
                 0x08000bbc       0x90 ./Core/Src/i2c.o
                 0x08000bbc                HAL_I2C_MspInit
- .text.main     0x08000c4c       0x64 ./Core/Src/main.o
+ .text.main     0x08000c4c       0x62 ./Core/Src/main.o
                 0x08000c4c                main
+ *fill*         0x08000cae        0x2 
  .text.SystemClock_Config
                 0x08000cb0       0xd4 ./Core/Src/main.o
                 0x08000cb0                SystemClock_Config

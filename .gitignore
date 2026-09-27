@@ -1,0 +1,33 @@
+# Keil 编译生成的文件
+*.axf
+# *.bin
+*.elf
+# *.hex
+*.d
+*.lst
+*.lnp
+*.lnk
+*.map
+*.o
+*.obj
+*.plg
+*.dep
+*.htm
+*.crf
+*.sct
+*.su
+*.cyclo
+# *.uvoptx
+# *.uvprojx
+# 临时文件
+*.bak
+*.tmp
+*.log
+*.swp
+*.orig
+# Keil uVision 临时文件
+*.aps
+*.uvopt
+*.uvguix.*
+/cmake-build-debug/
+/Debug/

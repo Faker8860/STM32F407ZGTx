@@ -1714,38 +1714,39 @@ int main(void)
   /* Modbus初始化必须在所有外设初始化完成之后：
    * xMBPortSerialInit会操作huart2，xMBPortTimersInit会操作htim7，
    * 放在MX_xxx_Init()之前会因为Instance为NULL直接HardFault */
-  eMBInit(MB_RTU, 0x01, 0x01, 115200, MB_PAR_EVEN, 1);
+  eMBInit(MB_RTU, 0x01, 0x01, baud, MB_PAR_EVEN, 1);
  8000c82:	2301      	movs	r3, #1
  8000c84:	9301      	str	r3, [sp, #4]
  8000c86:	2302      	movs	r3, #2
  8000c88:	9300      	str	r3, [sp, #0]
- 8000c8a:	f44f 33e1 	mov.w	r3, #115200	@ 0x1c200
- 8000c8e:	2201      	movs	r2, #1
- 8000c90:	2101      	movs	r1, #1
- 8000c92:	2000      	movs	r0, #0
- 8000c94:	f005 f8aa 	bl	8005dec <eMBInit>
+ 8000c8a:	687b      	ldr	r3, [r7, #4]
+ 8000c8c:	2201      	movs	r2, #1
+ 8000c8e:	2101      	movs	r1, #1
+ 8000c90:	2000      	movs	r0, #0
+ 8000c92:	f005 f8ab 	bl	8005dec <eMBInit>
   eMBEnable();
- 8000c98:	f005 f928 	bl	8005eec <eMBEnable>
+ 8000c96:	f005 f929 	bl	8005eec <eMBEnable>
 
   User_Init();
- 8000c9c:	f006 f878 	bl	8006d90 <User_Init>
+ 8000c9a:	f006 f879 	bl	8006d90 <User_Init>
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
 	  eMBPoll();
- 8000ca0:	f005 f962 	bl	8005f68 <eMBPoll>
+ 8000c9e:	f005 f963 	bl	8005f68 <eMBPoll>
 	  Modbus_BaudApply();
- 8000ca4:	f006 f954 	bl	8006f50 <Modbus_BaudApply>
+ 8000ca2:	f006 f955 	bl	8006f50 <Modbus_BaudApply>
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
 	  Command_KeyProcess();
- 8000ca8:	f006 f882 	bl	8006db0 <Command_KeyProcess>
+ 8000ca6:	f006 f883 	bl	8006db0 <Command_KeyProcess>
 	  eMBPoll();
- 8000cac:	bf00      	nop
- 8000cae:	e7f7      	b.n	8000ca0 <main+0x54>
+ 8000caa:	bf00      	nop
+ 8000cac:	e7f7      	b.n	8000c9e <main+0x52>
+	...
 
 08000cb0 <SystemClock_Config>:
 /**
@@ -18854,7 +18855,7 @@ static void prvvTIMERExpiredISR(void)
  8006bfc:	200002d8 	.word	0x200002d8
 
 08006c00 <APP_Config_BaudRateIsValid>:
-
+ * ========================================================= */
 /**
  * @brief 检查波特率编码是否合法
  */
@@ -18994,16 +18995,13 @@ HAL_StatusTypeDef APP_Config_Save(void)
      * 0x02 systemMode
      * 0x03~0x07 reserved
      */
-    ret = Bsp_Eeprom_Write(
+    ret = Bsp_Eeprom_Write(EEPROM_CONFIG_ADDR, (uint8_t *)&g_AppConfig, sizeof(APP_Config_t));
  8006c90:	2208      	movs	r2, #8
  8006c92:	4908      	ldr	r1, [pc, #32]	@ (8006cb4 <APP_Config_Save+0x38>)
  8006c94:	2000      	movs	r0, #0
  8006c96:	f7f9 fcc1 	bl	800061c <Bsp_Eeprom_Write>
  8006c9a:	4603      	mov	r3, r0
  8006c9c:	71fb      	strb	r3, [r7, #7]
-            EEPROM_CONFIG_ADDR,
-            (uint8_t *)&g_AppConfig,
-            sizeof(APP_Config_t));
 
     if (ret != EEPROM_OK)
  8006c9e:	79fb      	ldrb	r3, [r7, #7]
@@ -19026,7 +19024,7 @@ HAL_StatusTypeDef APP_Config_Save(void)
  8006cb4:	20001aa8 	.word	0x20001aa8
 
 08006cb8 <APP_Config_Load>:
-
+ * ========================================================= */
 /**
  * @brief 从 EEPROM 加载配置
  */
@@ -19040,14 +19038,13 @@ HAL_StatusTypeDef APP_Config_Load(void)
     /*
      * 从 EEPROM 读取整个配置
      */
-    ret = Bsp_Eeprom_Read(
+    ret = Bsp_Eeprom_Read( EEPROM_CONFIG_ADDR, (uint8_t *)&g_AppConfig, sizeof(APP_Config_t));
  8006cbe:	2208      	movs	r2, #8
  8006cc0:	490e      	ldr	r1, [pc, #56]	@ (8006cfc <APP_Config_Load+0x44>)
  8006cc2:	2000      	movs	r0, #0
  8006cc4:	f7f9 fd06 	bl	80006d4 <Bsp_Eeprom_Read>
  8006cc8:	4603      	mov	r3, r0
  8006cca:	71fb      	strb	r3, [r7, #7]
-            sizeof(APP_Config_t));
 
     /*
      * EEPROM 通信失败

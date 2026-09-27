@@ -11,21 +11,18 @@
 /* =========================================================
  * EEPROM 配置起始地址
  * ========================================================= */
-
 #define EEPROM_CONFIG_ADDR    0x00U
 
 
 /* =========================================================
  * 全局配置
  * ========================================================= */
-
 APP_Config_t g_AppConfig;
 
 
 /* =========================================================
  * 私有函数
  * ========================================================= */
-
 /**
  * @brief 检查波特率编码是否合法
  */
@@ -112,10 +109,7 @@ HAL_StatusTypeDef APP_Config_Save(void)
      * 0x02 systemMode
      * 0x03~0x07 reserved
      */
-    ret = Bsp_Eeprom_Write(
-            EEPROM_CONFIG_ADDR,
-            (uint8_t *)&g_AppConfig,
-            sizeof(APP_Config_t));
+    ret = Bsp_Eeprom_Write(EEPROM_CONFIG_ADDR, (uint8_t *)&g_AppConfig, sizeof(APP_Config_t));
 
     if (ret != EEPROM_OK)
     {
@@ -125,11 +119,9 @@ HAL_StatusTypeDef APP_Config_Save(void)
     return HAL_OK;
 }
 
-
 /* =========================================================
  * 加载配置
  * ========================================================= */
-
 /**
  * @brief 从 EEPROM 加载配置
  */
@@ -140,10 +132,7 @@ HAL_StatusTypeDef APP_Config_Load(void)
     /*
      * 从 EEPROM 读取整个配置
      */
-    ret = Bsp_Eeprom_Read(
-            EEPROM_CONFIG_ADDR,
-            (uint8_t *)&g_AppConfig,
-            sizeof(APP_Config_t));
+    ret = Bsp_Eeprom_Read( EEPROM_CONFIG_ADDR, (uint8_t *)&g_AppConfig, sizeof(APP_Config_t));
 
     /*
      * EEPROM 通信失败
@@ -177,7 +166,6 @@ HAL_StatusTypeDef APP_Config_Load(void)
 
     return HAL_OK;
 }
-
 
 /* =========================================================
  * 获取实际波特率

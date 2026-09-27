@@ -108,7 +108,7 @@ int main(void)
   /* Modbus初始化必须在所有外设初始化完成之后：
    * xMBPortSerialInit会操作huart2，xMBPortTimersInit会操作htim7，
    * 放在MX_xxx_Init()之前会因为Instance为NULL直接HardFault */
-  eMBInit(MB_RTU, 0x01, 0x01, 115200, MB_PAR_EVEN, 1);
+  eMBInit(MB_RTU, 0x01, 0x01, baud, MB_PAR_EVEN, 1);
   eMBEnable();
 
   User_Init();
