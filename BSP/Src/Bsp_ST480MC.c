@@ -232,45 +232,59 @@ void HAL_I2C_MasterTxCpltCallback(
 
 
     /*
-     * Only ST480MC TX -> RX transaction
+     * TX -> RX transaction
      */
-    if (s_st480mcState != ST480MC_STATE_TX)
+    if (s_st480mcState == ST480MC_STATE_TX)
     {
-        return;
-    }
+        /*
+         * 如果没有 RX buffer，
+         * 说明这是单纯 TX。
+         */
+        if ((s_st480mcRxBuffer == NULL) ||
+            (s_st480mcRxSize == 0U))
+        {
+            s_st480mcState =
+                ST480MC_STATE_DONE;
+
+            s_st480mcDone = 1U;
+
+            return;
+        }
 
 
-    /*
-     * TX complete.
-     *
-     * Now generate:
-     *
-     * REPEATED START
-     * Slave + R
-     * RX DATA
-     * STOP
-     */
-    s_st480mcState = ST480MC_STATE_RX;
-
-
-    halStatus = HAL_I2C_Master_Seq_Receive_IT(
-                    &hi2c1,
-                    ST480MC_I2C_ADDR,
-                    s_st480mcRxBuffer,
-                    s_st480mcRxSize,
-                    I2C_LAST_FRAME);
-
-
-    if (halStatus != HAL_OK)
-    {
-        s_st480mcError = 1U;
-        s_st480mcErrorCode =
-            HAL_I2C_GetError(&hi2c1);
-
+        /*
+         * TX 完成后进入 RX
+         *
+         * REPEATED START
+         * Slave + R
+         * RX
+         * STOP
+         */
         s_st480mcState =
-            ST480MC_STATE_ERROR;
+            ST480MC_STATE_RX;
 
-        s_st480mcDone = 1U;
+
+        halStatus =
+            HAL_I2C_Master_Seq_Receive_IT(
+                &hi2c1,
+                ST480MC_I2C_ADDR,
+                s_st480mcRxBuffer,
+                s_st480mcRxSize,
+                I2C_LAST_FRAME);
+
+
+        if (halStatus != HAL_OK)
+        {
+            s_st480mcError = 1U;
+
+            s_st480mcErrorCode =
+                HAL_I2C_GetError(&hi2c1);
+
+            s_st480mcState =
+                ST480MC_STATE_ERROR;
+
+            s_st480mcDone = 1U;
+        }
     }
 }
 
