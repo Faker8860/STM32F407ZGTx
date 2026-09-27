@@ -1,6 +1,0 @@
-../USER/Src/Command.c:16:6:User_Init	8	static
-../USER/Src/Command.c:28:6:Command_KeyProcess	16	static
-../USER/Src/Command.c:73:13:InputREG_Init	4	static
-../USER/Src/Command.c:80:13:HoldingREG_Init	4	static
-../USER/Src/Command.c:86:13:System_PrintStartupInfo	8	static
-../USER/Src/Command.c:99:6:Modbus_BaudApply	24	static

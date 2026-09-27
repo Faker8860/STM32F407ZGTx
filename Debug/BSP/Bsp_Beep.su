@@ -1,4 +1,0 @@
-../BSP/Bsp_Beep.c:10:6:Bsp_BeepInit	8	static
-../BSP/Bsp_Beep.c:18:6:Bsp_BeepOn	8	static
-../BSP/Bsp_Beep.c:26:6:Bsp_BeepOff	8	static
-../BSP/Bsp_Beep.c:34:6:Bsp_BeepToggle	8	static

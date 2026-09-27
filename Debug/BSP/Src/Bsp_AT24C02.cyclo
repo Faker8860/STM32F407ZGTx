@@ -1,7 +1,0 @@
-../BSP/Src/Bsp_AT24C02.c:25:15:Bsp_Eeprom_Init	1
-../BSP/Src/Bsp_AT24C02.c:38:15:Bsp_Eeprom_IsReady	3
-../BSP/Src/Bsp_AT24C02.c:65:22:Bsp_Eeprom_WaitReady	3
-../BSP/Src/Bsp_AT24C02.c:88:15:Bsp_Eeprom_WriteByte	2
-../BSP/Src/Bsp_AT24C02.c:110:15:Bsp_Eeprom_ReadByte	3
-../BSP/Src/Bsp_AT24C02.c:139:15:Bsp_Eeprom_Write	7
-../BSP/Src/Bsp_AT24C02.c:226:15:Bsp_Eeprom_Read	5

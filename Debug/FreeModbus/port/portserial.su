@@ -1,8 +1,0 @@
-../FreeModbus/port/portserial.c:57:6:vMBPortSerialEnable	24	static
-../FreeModbus/port/portserial.c:149:6:xMBPortSerialInit	24	static
-../FreeModbus/port/portserial.c:180:6:xMBPortSerialPutByte	16	static
-../FreeModbus/port/portserial.c:200:6:xMBPortSerialGetByte	16	static
-../FreeModbus/port/portserial.c:214:6:serialReceiveOneByteISR	8	static
-../FreeModbus/port/portserial.c:223:6:serialSentOneByteISR	8	static
-../FreeModbus/port/portserial.c:232:6:EnterCriticalSection	4	static,ignoring_inline_asm
-../FreeModbus/port/portserial.c:241:6:ExitCriticalSection	4	static,ignoring_inline_asm

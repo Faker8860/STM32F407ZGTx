@@ -1,6 +1,0 @@
-../FreeModbus/port/porttimer.c:74:6:xMBPortTimersInit	1
-../FreeModbus/port/porttimer.c:113:6:vMBPortTimersEnable	1
-../FreeModbus/port/porttimer.c:143:6:vMBPortTimersDisable	1
-../FreeModbus/port/porttimer.c:172:6:vMBPortTimersDelay	1
-../FreeModbus/port/porttimer.c:183:6:HAL_TIM_PeriodElapsedCallback	3
-../FreeModbus/port/porttimer.c:226:13:prvvTIMERExpiredISR	1

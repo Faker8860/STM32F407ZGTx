@@ -1,6 +1,0 @@
-../FreeModbus/modbus/mb.c:135:1:eMBInit	32	static
-../FreeModbus/modbus/mb.c:288:1:eMBRegisterCB	24	static
-../FreeModbus/modbus/mb.c:335:1:eMBClose	16	static
-../FreeModbus/modbus/mb.c:354:1:eMBEnable	16	static
-../FreeModbus/modbus/mb.c:372:1:eMBDisable	16	static
-../FreeModbus/modbus/mb.c:394:1:eMBPoll	24	static
