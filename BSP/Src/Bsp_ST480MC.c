@@ -76,8 +76,7 @@ ST480MC_Status_t Bsp_ST480MC_Init(void)
 
 uint8_t Bsp_ST480MC_IsBusy(void)
 {
-    if ((s_st480mcState == ST480MC_STATE_TX) ||
-        (s_st480mcState == ST480MC_STATE_RX))
+    if ((s_st480mcState == ST480MC_STATE_TX) || (s_st480mcState == ST480MC_STATE_RX))
     {
         return 1U;
     }
