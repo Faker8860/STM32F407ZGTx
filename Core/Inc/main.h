@@ -43,8 +43,10 @@ typedef struct
 
     uint16_t BaudRate;			//[1] 波特率选择 (初始化值: 0x05 = 115200)
 
+    uint16_t W25Q128_Status;			//[1] 波特率选择 (初始化值: 0x05 = 115200)
+
 } HoldingREG;
-_Static_assert(sizeof(HoldingREG) == 2 * sizeof(uint16_t), "HoldingREG Size ERROR");
+_Static_assert(sizeof(HoldingREG) == 3 * sizeof(uint16_t), "HoldingREG Size ERROR");
 #pragma pack(pop)
 
 #pragma pack(push, 1)
@@ -103,6 +105,8 @@ void Error_Handler(void);
 #define WK_UP_GPIO_Port GPIOA
 #define Servo_Pin GPIO_PIN_5
 #define Servo_GPIO_Port GPIOA
+#define W25Q128_CS_Pin GPIO_PIN_14
+#define W25Q128_CS_GPIO_Port GPIOB
 #define RS485_DE_Pin GPIO_PIN_8
 #define RS485_DE_GPIO_Port GPIOG
 

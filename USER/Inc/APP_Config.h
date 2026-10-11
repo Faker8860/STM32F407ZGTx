@@ -52,8 +52,8 @@ typedef struct
     uint8_t MAGIC;
     uint8_t baudRate;
     uint8_t systemMode;
-    uint8_t reserved[5];
-
+    uint8_t W25Q128_Status;
+    uint8_t reserved[4];
 } APP_Config_t;
 
 

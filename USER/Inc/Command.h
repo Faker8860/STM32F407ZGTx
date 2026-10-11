@@ -18,6 +18,8 @@ void Command_KeyProcess(void);
 void Modbus_BaudApply(void);
 void User_Init(void);
 
+
+
 extern volatile uint8_t g_bBaudChangePending;
 
 

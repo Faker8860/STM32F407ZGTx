@@ -76,6 +76,7 @@ void APP_Config_SetDefault(void)
     g_AppConfig.MAGIC      = EEPROM_CONFIG_MAGIC;
     g_AppConfig.baudRate   = DEFAULT_BAUD_CODE;
     g_AppConfig.systemMode = DEFAULT_SYSTEM_MODE;
+    g_AppConfig.W25Q128_Status = HOLDINGREG->W25Q128_Status;
 }
 
 

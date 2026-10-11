@@ -15,5 +15,7 @@
 #include <Inc/Bsp_LightSensor.h>
 #include <Inc/Bsp_AT24C02.h>
 #include <Inc/Bsp_RS485.h>
+#include <Inc/Bsp_ST480MC.h>
+#include <Inc/Bsp_W25Q128.h>
 
 #endif /* INC_BSP_HEADER_H_ */

@@ -19,6 +19,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "i2c.h"
+#include "spi.h"
 #include "tim.h"
 #include "usart.h"
 #include "gpio.h"
@@ -96,6 +97,7 @@ int main(void)
   MX_I2C1_Init();
   MX_USART2_UART_Init();
   MX_TIM7_Init();
+  MX_SPI1_Init();
   /* USER CODE BEGIN 2 */
 
   /* 先加载配置（含波特率），失败时内部会回退默认 115200 */
@@ -112,6 +114,8 @@ int main(void)
   eMBEnable();
 
   User_Init();
+
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -124,6 +128,21 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 	  Command_KeyProcess();
+
+
+	  if(HOLDINGREG->W25Q128_Status == 0)
+	  {
+		  W25Q128_PowerWriteTest();
+		  HOLDINGREG->W25Q128_Status = 1;
+
+	  }
+	  else if(HOLDINGREG->W25Q128_Status == 1)
+	  {
+		  W25Q128_PowerReadTest();
+		  HOLDINGREG->W25Q128_Status = 2;
+	  }
+
+//	  Bsp_ST480MC_CollectTask();
   }
   /* USER CODE END 3 */
 }
